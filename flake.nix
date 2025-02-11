@@ -59,6 +59,7 @@
         raycast         # Control your tools with a few keystrokes
         zoxide          # Fast cd command that learns your habits
         obsidian        # Powerful knowledge base that works on top of a local folder of plain text Markdown files
+        television      # Blazingly fast general purpose fuzzy finder TUI
       ];
 
       fonts.packages = with pkgs; [
