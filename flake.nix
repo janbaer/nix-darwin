@@ -105,7 +105,6 @@
         # Search for the app id with `mas search Wireguard`
         masApps = {
           "Wireguard" = 1451685025;
-          "CopyClip" = 595191960;
         };
         onActivation.cleanup = "zap"; # make sure that only packages from here are installed
         onActivation.autoUpdate = true;
