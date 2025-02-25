@@ -14,6 +14,7 @@
 
   outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, nix-homebrew }:
   let
+    username = "jan.baer";
     configuration = { pkgs, config, ... }: {
 
       nixpkgs.config.allowUnfree = true;
@@ -28,7 +29,6 @@
         # rustc
         # rustup          # Rust toolchain installer
         neovim
-        # kitty
         tmux
         utm             # Full featured system emulator and virtual machine host for iOS and macOS
         lf              # Terminal file manager written in Go and heavily inspired by ranger
@@ -71,9 +71,9 @@
       # Necessary for using flakes on this system.
       nix.settings.experimental-features = "nix-command flakes";
 
-      users.users."jan.baer" = {
-        name = "jan.baer";
-        home = "/Users/jan.baer";
+      users.users."${username}" = {
+        name = "${username}";
+        home = "/Users/${username}";
       };
        
       homebrew = {
