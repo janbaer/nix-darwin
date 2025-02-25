@@ -12,9 +12,6 @@ in {
 
   xdg.enable = true;
 
-  # xdg.configFile.nvim.source = mkOutOfStoreSymlink "/Users/jan.baer/Projects/dotfiles/.config/nvim";
-  # xdg.configFile.kitty.source = mkOutOfStoreSymlink "/Users/jan.baer/Projects/dotfiles/.config/kitty";
-
   programs = {
     git = import ./programs/git.nix {inherit config pkgs;};
     tmux = import ./programs/tmux.nix {inherit pkgs;};
@@ -25,6 +22,7 @@ in {
 
   home.packages = with pkgs; [
     httpie
+    pwgen
   ];
 
   home.file = {
