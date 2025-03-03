@@ -23,6 +23,7 @@ in {
   home.packages = with pkgs; [
     httpie
     pwgen
+    # nodePackages."@anthropic-ai/claude-code"
   ];
 
   home.file = {
@@ -40,7 +41,6 @@ in {
     ".config/powerline".source = mkOutOfStoreSymlink "/Users/jan.baer/Projects/dotfiles/.config/powerline";
     ".config/atuin".source = mkOutOfStoreSymlink "/Users/jan.baer/Projects/dotfiles/.config/atuin";
     ".config/ghostty".source = mkOutOfStoreSymlink "/Users/jan.baer/Projects/dotfiles/.config/ghostty"; 
-    ".config/aerospace".source = mkOutOfStoreSymlink "/Users/jan.baer/Projects/dotfiles/.config/aerospace"; 
     ".fzf-init.zsh".source = mkOutOfStoreSymlink "/Users/jan.baer/Projects/dotfiles/.fzf-init.zsh";
     ".p10k.zsh".source = mkOutOfStoreSymlink "/Users/jan.baer/Projects/dotfiles/.p10k.zsh";
   };

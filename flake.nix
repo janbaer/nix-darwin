@@ -61,6 +61,7 @@
         obsidian        # Powerful knowledge base that works on top of a local folder of plain text Markdown files
         television      # Blazingly fast general purpose fuzzy finder TUI
         pipx            # Install and run Python applications in isolated environments
+        nh              # Nix helper
       ];
 
       fonts.packages = with pkgs; [
