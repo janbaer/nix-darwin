@@ -23,7 +23,7 @@ in {
   home.packages = with pkgs; [
     httpie
     pwgen
-    # nodePackages."@anthropic-ai/claude-code"
+    fd      # Required for Nvim Telescope plugin for repository search
   ];
 
   home.file = {
