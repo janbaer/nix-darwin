@@ -98,6 +98,7 @@
           "yubico-yubikey-manager"
           "ghostty"
           "studio-3t"
+          "orbstack"        # Running Docker containers
         ];
         taps = [
           "theseal/ssh-askpass"
