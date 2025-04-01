@@ -16,6 +16,9 @@
   let
     username = "jan.baer";
     configuration = { pkgs, config, ... }: {
+      # Necessary for using flakes on this system.
+      nix.settings.experimental-features = "nix-command flakes";
+
 
       nixpkgs.config.allowUnfree = true;
 
@@ -26,8 +29,6 @@
         lazygit
         mkalias         # Quick'n'dirty tool to make APFS aliases
         go
-        # rustc
-        # rustup          # Rust toolchain installer
         neovim
         tmux
         utm             # Full featured system emulator and virtual machine host for iOS and macOS
@@ -50,9 +51,7 @@
         kubectx         # Fast way to switch between clusters and namespaces in kubectl!
         stern
         k9s             # Kubernetes CLI To Manage Your Clusters In Style
-        # python314
         wget
-        sshpass         # Non-interactive ssh password auth - Required from Ansible for accessing servers over SSH with sending TOTP
         coreutils-prefixed # GNU Core Utilities Prefixed
         _1password-cli  # 1Password command-line utility
         # pam-reattach    # Reattach to the user's GUI session on macOS during authentication (for Touch ID support in tmux)
@@ -70,21 +69,23 @@
         nerd-fonts.fira-code
       ];
 
-      # Necessary for using flakes on this system.
-      nix.settings.experimental-features = "nix-command flakes";
-
       users.users."${username}" = {
         name = "${username}";
         home = "/Users/${username}";
       };
        
+      # This is using homebrew to install packages which Nix doesn't have
       homebrew = {
         enable = true;
+
+        onActivation.cleanup = "zap";         # make sure that only packages from here are installed
+        onActivation.autoUpdate = true;
+        onActivation.upgrade = true;
+
         brews = [
-          "mas" # Required for searching for app-ids in the MacOS app-store
-          "openssh"
+          "mas"                               # Required for searching for app-ids in the MacOS app-store
           "theseal/ssh-askpass/ssh-askpass"
-          "michaelroosz/ssh/libsk-libfido2"
+          "michaelroosz/ssh/libsk-libfido2"   # Fixes a problem with Yubikeys
         ];
         casks = [
           "font-comic-shanns-mono-nerd-font"
@@ -92,7 +93,6 @@
           "firefox"
           "1password"
           # "1password_cli"
-          # "tunnelblick"
           "yubico-authenticator"
           "yubico-yubikey-manager"
           "ghostty"
@@ -102,14 +102,12 @@
           "theseal/ssh-askpass"
           "michaelroosz/ssh"
         ];
+
         # Define apps from the MacOS app-store here - Login is required
         # Search for the app id with `mas search Wireguard`
         masApps = {
           "Wireguard" = 1451685025;
         };
-        onActivation.cleanup = "zap"; # make sure that only packages from here are installed
-        onActivation.autoUpdate = true;
-        onActivation.upgrade = true;
       };
 
       system.activationScripts.applications.text = let
@@ -153,11 +151,6 @@
 
       system.defaults = {
         dock.autohide = true;
-        # dock.persistent-apps = [
-        #   "/opt/homebrew/bin/chromium"
-        #   "/opt/homebrew/bin/firefox"
-        #   "/run/current-system/sw/bin/kitty"
-        # ];
         dock.mru-spaces = false;
         finder.AppleShowAllExtensions = true;
         finder.FXPreferredViewStyle = "clmv";
@@ -185,7 +178,7 @@
           # `home-manager` config
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users."jan.baer" = import ./home.nix;
+          home-manager.users."${username}" = import ./home.nix;
         }
 
         nix-homebrew.darwinModules.nix-homebrew
@@ -193,7 +186,7 @@
           nix-homebrew = {
             enable = true;
             enableRosetta = true;
-            user = "jan.baer";
+            user = username;
             autoMigrate = true;
           };
         }
