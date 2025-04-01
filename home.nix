@@ -18,12 +18,15 @@ in {
     zsh = import ./programs/zsh.nix {inherit config pkgs lib; };
     zoxide = (import ./programs/zoxide.nix { inherit config pkgs; });
     fzf = import ./programs/fzf.nix {inherit pkgs;};
+    direnv = import ./programs/direnv.nix {inherit pkgs;};
   };
 
   home.packages = with pkgs; [
     httpie
     pwgen
-    fd      # Required for Nvim Telescope plugin for repository search
+    fd          # Required for Nvim Telescope plugin for repository search
+    superfile   # Another nice and fancy TUI based filemanager
+    devenv      # Fast, Declarative, Reproducible, and Composable Developer Environments
   ];
 
   home.file = {
