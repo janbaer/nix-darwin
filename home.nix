@@ -30,6 +30,10 @@ in {
     devenv      # Fast, Declarative, Reproducible, and Composable Developer Environments
   ];
 
+  home.sessionVariables = {
+    ssh-askpass = "/opt/homebrew/bin/ssh-askpass";
+  };
+
   home.file = {
     ".tmux".source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.tmux";
     ".tmux.conf".source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.tmux.conf";
