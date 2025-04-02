@@ -62,6 +62,8 @@
         pipx            # Install and run Python applications in isolated environments
         nh              # Nix helper
 
+        python312
+
         code-cursor     # AI-powered code editor built on vscode
       ];
 
