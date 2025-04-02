@@ -61,6 +61,8 @@
         television      # Blazingly fast general purpose fuzzy finder TUI
         pipx            # Install and run Python applications in isolated environments
         nh              # Nix helper
+
+        code-cursor     # AI-powered code editor built on vscode
       ];
 
       fonts.packages = with pkgs; [
