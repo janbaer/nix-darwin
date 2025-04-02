@@ -51,6 +51,7 @@ in {
     ".config/ghostty".source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.config/ghostty"; 
     ".fzf-init.zsh".source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.fzf-init.zsh";
     ".p10k.zsh".source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.p10k.zsh";
+    "bin/init-keychain.sh".source = mkOutOfStoreSymlink "/Users/jan.baer/Projects/dotfiles/bin/init-keychain.sh";
   };
 
   programs.home-manager.enable = true;
