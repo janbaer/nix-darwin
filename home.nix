@@ -31,7 +31,7 @@ in {
   ];
 
   home.sessionVariables = {
-    ssh-askpass = "/opt/homebrew/bin/ssh-askpass";
+    SSH_ASKPASS = "/opt/homebrew/bin/ssh-askpass";
   };
 
   home.file = {
