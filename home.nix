@@ -28,6 +28,7 @@ in {
     fd          # Required for Nvim Telescope plugin for repository search
     superfile   # Another nice and fancy TUI based filemanager
     devenv      # Fast, Declarative, Reproducible, and Composable Developer Environments
+    tgpt        # AI from the command line
   ];
 
   home.sessionVariables = {
