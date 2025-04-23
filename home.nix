@@ -29,6 +29,7 @@ in {
     superfile   # Another nice and fancy TUI based filemanager
     devenv      # Fast, Declarative, Reproducible, and Composable Developer Environments
     tgpt        # AI from the command line
+    keepassxc   # Offline password manager with many features
   ];
 
   home.sessionVariables = {
