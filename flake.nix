@@ -65,6 +65,8 @@
         python312
 
         code-cursor     # AI-powered code editor built on vscode
+
+        lima            # Linux virtual machines
       ];
 
       fonts.packages = with pkgs; [
