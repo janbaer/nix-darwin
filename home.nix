@@ -30,6 +30,7 @@ in {
     devenv      # Fast, Declarative, Reproducible, and Composable Developer Environments
     tgpt        # AI from the command line
     keepassxc   # Offline password manager with many features
+    jless       # Command-line pager for JSON data
   ];
 
   home.sessionVariables = {
