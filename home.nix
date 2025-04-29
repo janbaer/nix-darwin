@@ -33,7 +33,10 @@ in {
   ];
 
   home.sessionVariables = {
+    SSH_SK_PROVIDER = "/usr/local/lib/libsk-libfido2.dylib";
     SSH_ASKPASS = "/opt/homebrew/bin/ssh-askpass";
+    SSH_AUTH_SOCK_LOCAL = "/private/tmp/com.apple.launchd.2kMRnNrA1N/Listeners";
+    SSH_AUTH_SOCK = "/private/tmp/com.apple.launchd.p1DRKW2MxY/Listeners";
   };
 
   home.file = {
