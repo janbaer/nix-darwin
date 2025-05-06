@@ -8,6 +8,7 @@
   username = "jan.baer";
 in {
   home.stateVersion = "24.11";
+
   home.username = "${username}";
   home.homeDirectory = "/Users/${username}";
 
@@ -19,18 +20,12 @@ in {
     zsh = import ./programs/zsh.nix {inherit config pkgs lib; };
     zoxide = (import ./programs/zoxide.nix { inherit config pkgs; });
     fzf = import ./programs/fzf.nix {inherit pkgs;};
-    direnv = import ./programs/direnv.nix {inherit pkgs;};
+    # direnv = import ./programs/direnv.nix {inherit pkgs;};
   };
 
   home.packages = with pkgs; [
-    httpie
-    pwgen
-    fd          # Required for Nvim Telescope plugin for repository search
-    superfile   # Another nice and fancy TUI based filemanager
-    devenv      # Fast, Declarative, Reproducible, and Composable Developer Environments
-    tgpt        # AI from the command line
-    keepassxc   # Offline password manager with many features
-    jless       # Command-line pager for JSON data
+    # superfile   # Another nice and fancy TUI based filemanager
+    # devenv      # Fast, Declarative, Reproducible, and Composable Developer Environments
   ];
 
   home.sessionVariables = {
