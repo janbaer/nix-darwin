@@ -2,37 +2,59 @@
   description = "Jan's nix-darwin system flake";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nix-darwin.url = "github:LnL7/nix-darwin/master";
-    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/master";
+    nix-darwin = {
+      url = "github:LnL7/nix-darwin/nix-darwin-24.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, nix-homebrew }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, nixpkgs-unstable, home-manager, nix-homebrew, ... }:
   let
     username = "jan.baer";
-    configuration = { pkgs, config, ... }: {
+    system = "aarch64-darwin";
+
+    nodeOverlay = final: prev: {
+      nodejs = prev.nodejs_22;
+      nodejs-slim = prev.nodejs-slim_22;
+
+      nodejs_20 = prev.nodejs_22;
+      nodejs-slim_20 = prev.nodejs-slim_22;
+    };
+
+    pkgs = import nixpkgs {
+      inherit system;
+      config = {
+        allowUnfree = true;
+        allowUnsupportedSystem = true;
+      };
+      overlays = [ nodeOverlay ];
+    };
+
+    configuration = { pkgs, pkgs-unstable, config, ... }: {
       # Necessary for using flakes on this system.
       nix.settings.experimental-features = "nix-command flakes";
-
-
-      nixpkgs.config.allowUnfree = true;
 
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
       environment.systemPackages = with pkgs; [
+        nh              # Nix helper
+        nix-tree        # Interactively browse a Nix store paths dependencies
+
         git
         lazygit
-        mkalias         # Quick'n'dirty tool to make APFS aliases
-        go
-        neovim
+
+        # # Tools for the terminal
         tmux
-        utm             # Full featured system emulator and virtual machine host for iOS and macOS
+        mkalias         # Quick'n'dirty tool to make APFS aliases
         lf              # Terminal file manager written in Go and heavily inspired by ranger
+        zoxide          # Fast cd command that learns your habits
         bat
         btop            # Monitor of resources
         eza             # Modern, maintained replacement for ls
@@ -40,39 +62,53 @@
         atuin           # Replacement for a shell history
         ripgrep
         gopass
-        ansible
-        terraform
-        vscode
+        wget
+        pwgen
+        httpie
+        jless           # Command-line pager for JSON data
+        fd              # Required for Nvim Telescope plugin for repository search
+
+        # My editor for everythin
+        pkgs-unstable.neovim
         luarocks        # A package manager for Lua modules.
-        nodejs_20       # Event-driven I/O framework for the V8 JavaScript engine
+
+        # Development environment
+        nodejs          # Event-driven I/O framework for the V8 JavaScript engine
+        vscode
         yarn            # Fast, reliable, and secure dependency management for nodejs
         npkill          # Easily find and remove old and heavy node_modules folders
+
+        go
+
+        # Instrastructure as code
+        ansible
+        terraform
+        coreutils-prefixed # GNU Core Utilities Prefixed  (Required for Ansible)
+
+        # Tools for Kubernetes
         kubectl
         kubectx         # Fast way to switch between clusters and namespaces in kubectl!
         stern
         k9s             # Kubernetes CLI To Manage Your Clusters In Style
-        wget
-        coreutils-prefixed # GNU Core Utilities Prefixed
+
+        # Password management
         _1password-cli  # 1Password command-line utility
+        keepassxc   # Offline password manager with many features
         # pam-reattach    # Reattach to the user's GUI session on macOS during authentication (for Touch ID support in tmux)
+
         raycast         # Control your tools with a few keystrokes
-        zoxide          # Fast cd command that learns your habits
         obsidian        # Powerful knowledge base that works on top of a local folder of plain text Markdown files
-        television      # Blazingly fast general purpose fuzzy finder TUI
+
         pipx            # Install and run Python applications in isolated environments
-        nh              # Nix helper
 
-        python312
-
-        code-cursor     # AI-powered code editor built on vscode
-
-        lima            # Linux virtual machines
+        # # code-cursor     # AI-powered code editor built on vscode
+        tgpt        # AI from the command line
       ];
 
       fonts.packages = with pkgs; [
         fira-code
         fira-code-symbols
-        nerd-fonts.fira-code
+        # nerd-fonts.fira-code
       ];
 
       users.users."${username}" = {
@@ -93,6 +129,7 @@
           "theseal/ssh-askpass/ssh-askpass"
           "michaelroosz/ssh/libsk-libfido2"   # Fixes a problem with Yubikeys
           "michaelroosz/ssh/sshpass"          # Contains an important fix for keeping connections open also when using ssh-jumphost 
+          # "node@20"
         ];
         casks = [
           "font-comic-shanns-mono-nerd-font"
@@ -143,7 +180,7 @@
 
       # Used for backwards compatibility, please read the changelog before changing.
       # $ darwin-rebuild changelog
-      system.stateVersion = 6;
+      system.stateVersion = 5;
 
       # Automatic updating
       # system.autoUpgrade.enable = true;
@@ -155,7 +192,7 @@
       # nix.gc.options = "--delete-older-than 10d";
       # nix.optimise.automatic = true;
 
-      security.pam.services.sudo_local.touchIdAuth = true;
+      # security.pam.services.sudo_local.touchIdAuth = true;
 
       system.defaults = {
         dock.autohide = true;
@@ -171,13 +208,23 @@
       };
 
       # The platform the configuration will be used on.
-      nixpkgs.hostPlatform = "aarch64-darwin";
+      nixpkgs.hostPlatform = system;
     };
   in
   {
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#M9WMQ6QPM7
     darwinConfigurations."M9WMQ6QPM7" = nix-darwin.lib.darwinSystem {
+      inherit system;
+
+      specialArgs = {
+        inherit pkgs;
+        pkgs-unstable = import nixpkgs-unstable {
+          inherit system; 
+          config.allowUnfree = true;
+        };
+      };
+
       modules = [
         configuration
 
