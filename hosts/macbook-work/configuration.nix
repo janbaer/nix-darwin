@@ -33,6 +33,8 @@ in
     jless           # Command-line pager for JSON data
     fd              # Required for Nvim Telescope plugin for repository search
 
+    gnupg           # Modern release of the GNU Privacy Guard, a GPL OpenPGP implementation
+
     # My editor for everythin
     pkgs-unstable.neovim
     luarocks        # A package manager for Lua modules.
