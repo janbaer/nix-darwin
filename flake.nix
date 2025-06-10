@@ -36,6 +36,11 @@
       };
       overlays = [ nodeOverlay ];
     };
+
+    pkgs-unstable = import nixpkgs-unstable {
+      inherit system; 
+      config.allowUnfree = true;
+    };
   in
   {
     # Build darwin flake using:
@@ -46,10 +51,7 @@
       specialArgs = {
         inherit self;
         inherit pkgs;
-        pkgs-unstable = import nixpkgs-unstable {
-          inherit system; 
-          config.allowUnfree = true;
-        };
+        inherit pkgs-unstable;
         inherit username;
         inherit system;
       };
@@ -63,6 +65,10 @@
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.users."${username}" = import ./home.nix;
+          home-manager.extraSpecialArgs = {
+            inherit pkgs;
+            inherit pkgs-unstable;
+          };
         }
 
         nix-homebrew.darwinModules.nix-homebrew

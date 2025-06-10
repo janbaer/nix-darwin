@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  pkgs-unstable,
   lib,
   ...
 }: let
@@ -14,19 +15,29 @@ in {
 
   xdg.enable = true;
 
+  home.packages = with pkgs; [
+    # devenv      # Fast, Declarative, Reproducible, and Composable Developer Environments
+
+    lima          # Run Linux containers in Docker
+
+    # Ansible related tools
+    molecule      # Testing of Ansible roles
+    ansible-lint  # Linter for Ansible
+    yamllint      # Linter for YAML files
+
+    zed-editor    # A code editor for the 21st century
+  ];
+
   programs = {
     git = import ./programs/git.nix {inherit config pkgs;};
     tmux = import ./programs/tmux.nix {inherit pkgs;};
     zsh = import ./programs/zsh.nix {inherit config pkgs lib; };
     zoxide = (import ./programs/zoxide.nix { inherit config pkgs; });
     fzf = import ./programs/fzf.nix {inherit pkgs;};
+    neovim = import ./programs/neovim.nix {inherit pkgs pkgs-unstable;};
     # direnv = import ./programs/direnv.nix {inherit pkgs;};
   };
 
-  home.packages = with pkgs; [
-    # superfile   # Another nice and fancy TUI based filemanager
-    # devenv      # Fast, Declarative, Reproducible, and Composable Developer Environments
-  ];
 
   home.sessionVariables = {
     SSH_SK_PROVIDER = "/usr/local/lib/libsk-libfido2.dylib";

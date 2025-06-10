@@ -34,8 +34,10 @@ in
     fd              # Required for Nvim Telescope plugin for repository search
 
     gnupg           # Modern release of the GNU Privacy Guard, a GPL OpenPGP implementation
+    pinentry-curses # Gnu implementation for entering PINs or passphrases in a terminal
 
     # My editor for everythin
+    python312
     pkgs-unstable.neovim
     luarocks        # A package manager for Lua modules.
 
@@ -102,6 +104,7 @@ in
       "font-comic-shanns-mono-nerd-font"
       "chromium"
       "firefox"
+      # "keychain" # User-friendly front-end to ssh-agent
       "1password"
       # "1password_cli"
       "yubico-authenticator"
