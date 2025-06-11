@@ -1,4 +1,4 @@
-{ self, pkgs, pkgs-unstable, config, system, username, ...}:
+{ self, pkgs, config, system, username, ...}:
 let
   
 in
@@ -38,7 +38,7 @@ in
 
     # My editor for everythin
     python312
-    pkgs-unstable.neovim
+    neovim
     luarocks        # A package manager for Lua modules.
 
     # Development environment
@@ -84,6 +84,7 @@ in
     name = "${username}";
     home = "/Users/${username}";
   };
+
    
   # This is using homebrew to install packages which Nix doesn't have
   homebrew = {
@@ -125,25 +126,25 @@ in
     };
   };
 
-  system.activationScripts.applications.text = let
-    env = pkgs.buildEnv {
-      name = "system-applications";
-      paths = config.environment.systemPackages;
-      pathsToLink = "/Applications";
-    };
-  in
-    pkgs.lib.mkForce ''
-      # Set up applications.
-      echo "setting up /Applications..." >&2
-      rm -rf /Applications/Nix\ Apps
-      mkdir -p /Applications/Nix\ Apps
-      find ${env}/Applications -maxdepth 1 -type l -exec readlink '{}' + |
-      while read -r src; do
-        app_name=$(basename "$src")
-        echo "copying $src" >&2
-        ${pkgs.mkalias}/bin/mkalias "$src" "/Applications/Nix Apps/$app_name"
-      done
-    '';     
+  # system.activationScripts.applications.text = let
+  #   env = pkgs.buildEnv {
+  #     name = "system-applications";
+  #     paths = config.environment.systemPackages;
+  #     pathsToLink = "/Applications";
+  #   };
+  # in
+  #   pkgs.lib.mkForce ''
+  #     # Set up applications.
+  #     echo "setting up /Applications..." >&2
+  #     rm -rf /Applications/Nix\ Apps
+  #     mkdir -p /Applications/Nix\ Apps
+  #     find ${env}/Applications -maxdepth 1 -type l -exec readlink '{}' + |
+  #     while read -r src; do
+  #       app_name=$(basename "$src")
+  #       echo "copying $src" >&2
+  #       ${pkgs.mkalias}/bin/mkalias "$src" "/Applications/Nix Apps/$app_name"
+  #     done
+  #   '';
    
   # Set Git commit hash for darwin-version.
   system.configurationRevision = self.rev or self.dirtyRev or null;
@@ -163,6 +164,8 @@ in
   # nix.optimise.automatic = true;
 
   # security.pam.services.sudo_local.touchIdAuth = true;
+
+  system.primaryUser = "${username}";
 
   system.defaults = {
     dock.autohide = true;

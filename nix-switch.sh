@@ -1,3 +1,3 @@
 #!/bin/bash
 
-darwin-rebuild switch --flake ~/Projects/nix-darwin
+sudo darwin-rebuild switch --flake ~/Projects/nix-darwin

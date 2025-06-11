@@ -1,7 +1,6 @@
 {
   config,
   pkgs,
-  pkgs-unstable,
   lib,
   ...
 }: let
@@ -24,8 +23,6 @@ in {
     molecule      # Testing of Ansible roles
     ansible-lint  # Linter for Ansible
     yamllint      # Linter for YAML files
-
-    zed-editor    # A code editor for the 21st century
   ];
 
   programs = {
@@ -34,7 +31,6 @@ in {
     zsh = import ./programs/zsh.nix {inherit config pkgs lib; };
     zoxide = (import ./programs/zoxide.nix { inherit config pkgs; });
     fzf = import ./programs/fzf.nix {inherit pkgs;};
-    neovim = import ./programs/neovim.nix {inherit pkgs pkgs-unstable;};
     # direnv = import ./programs/direnv.nix {inherit pkgs;};
   };
 
@@ -47,23 +43,81 @@ in {
   };
 
   home.file = {
-    ".tmux".source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.tmux";
-    ".tmux.conf".source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.tmux.conf";
-    ".gitattributes".source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.gitattributes";
-    ".gitconfig".source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.gitconfig";
-    ".gitconfig_check24".source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.gitconfig_check24";
-    ".config/zsh".source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.config/zsh";
-    ".zshenv".source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.zshenv";
-    ".config/lf".source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.config/lf";
-    ".config/lazygit".source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.config/lazygit";
-    ".config/nvim".source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.config/nvim";
-    ".config/Code".source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.config/Code";
-    ".config/powerline".source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.config/powerline";
-    ".config/atuin".source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.config/atuin";
-    ".config/ghostty".source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.config/ghostty"; 
-    ".fzf-init.zsh".source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.fzf-init.zsh";
-    ".p10k.zsh".source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.p10k.zsh";
-    "bin/init-keychain.sh".source = mkOutOfStoreSymlink "/Users/jan.baer/Projects/dotfiles/bin/init-keychain.sh";
+    ".tmux" = {
+      source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.tmux";
+      force = true;
+      recursive = true;
+    };
+    ".tmux.conf" = {
+      source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.tmux.conf";
+      force = true;
+    };
+    ".gitattributes" = {
+      source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.gitattributes";
+      force = true;
+    };
+    ".gitconfig" = {
+      source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.gitconfig";
+      force = true;
+    };
+    ".gitconfig_check24" = {
+      source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.gitconfig_check24";
+      force = true;
+    };
+    ".config/zsh" = {
+      source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.config/zsh";
+      force = true;
+      recursive = true;
+    };
+    ".zshenv" = {
+      source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.zshenv";
+      force = true;
+    };
+    ".config/lf" = {
+      source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.config/lf";
+      force = true;
+      recursive = true;
+    };
+    ".config/lazygit" = {
+      source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.config/lazygit";
+      force = true;
+      recursive = true;
+    };
+    ".config/nvim" = {
+      source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.config/nvim";
+      force = true;
+      recursive = true;
+    };
+    ".config/Code" = {
+      source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.config/Code";
+      force = true;
+      recursive = true;
+    };
+    ".config/powerline" = {
+      source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.config/powerline";
+      force = true;
+    };
+    ".config/atuin" = {
+      source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.config/atuin";
+      force = true;
+      recursive = true;
+    };
+    ".config/ghostty" = {
+      source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.config/ghostty"; 
+      force = true;
+    };
+    ".fzf-init.zsh" = {
+      source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.fzf-init.zsh";
+      force = true;
+    };
+    ".p10k.zsh" = {
+      source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.p10k.zsh";
+      force = true;
+    };
+    "bin/init-keychain.sh" = {
+      source = mkOutOfStoreSymlink "/Users/jan.baer/Projects/dotfiles/bin/init-keychain.sh";
+      force = true;
+    };
   };
 
   programs.home-manager.enable = true;

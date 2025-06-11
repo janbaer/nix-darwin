@@ -2,45 +2,41 @@
   description = "Jan's nix-darwin system flake";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/master";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     nix-darwin = {
-      url = "github:LnL7/nix-darwin/nix-darwin-24.11";
+      url = "github:LnL7/nix-darwin/nix-darwin-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, nixpkgs-unstable, home-manager, nix-homebrew, ... }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, nix-homebrew, ... }:
   let
     username = "jan.baer";
     system = "aarch64-darwin";
 
-    nodeOverlay = final: prev: {
-      nodejs = prev.nodejs_22;
-      nodejs-slim = prev.nodejs-slim_22;
-
-      nodejs_20 = prev.nodejs_22;
-      nodejs-slim_20 = prev.nodejs-slim_22;
-    };
+    # nodeOverlay = final: prev: {
+    #   nodejs = prev.nodejs_22;
+    #   nodejs-slim = prev.nodejs-slim_22;
+    #
+    #   nodejs_20 = prev.nodejs_22;
+    #   nodejs-slim_20 = prev.nodejs-slim_22;
+    # };
 
     pkgs = import nixpkgs {
       inherit system;
       config = {
         allowUnfree = true;
         allowUnsupportedSystem = true;
+        allowBroken = true;
       };
-      overlays = [ nodeOverlay ];
+      # overlays = [ nodeOverlay ];
     };
 
-    pkgs-unstable = import nixpkgs-unstable {
-      inherit system; 
-      config.allowUnfree = true;
-    };
   in
   {
     # Build darwin flake using:
@@ -51,7 +47,6 @@
       specialArgs = {
         inherit self;
         inherit pkgs;
-        inherit pkgs-unstable;
         inherit username;
         inherit system;
       };
@@ -67,7 +62,7 @@
           home-manager.users."${username}" = import ./home.nix;
           home-manager.extraSpecialArgs = {
             inherit pkgs;
-            inherit pkgs-unstable;
+            # inherit pkgs-unstable;
           };
         }
 
