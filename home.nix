@@ -110,6 +110,10 @@ in {
       source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.config/ghostty"; 
       force = true;
     };
+    ".config/mcphub/servers.json" = {
+      source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.config/mcphub/servers.json";
+      force = true;
+    };
     ".fzf-init.zsh" = {
       source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.fzf-init.zsh";
       force = true;
