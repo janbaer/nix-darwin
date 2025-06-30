@@ -23,6 +23,9 @@ in {
     molecule      # Testing of Ansible roles
     ansible-lint  # Linter for Ansible
     yamllint      # Linter for YAML files
+
+    uv            # Extremely fast Python package installer and resolver, written in Rust
+    volta         # Node Version Manager
   ];
 
   programs = {
@@ -40,6 +43,7 @@ in {
     SSH_ASKPASS = "/opt/homebrew/bin/ssh-askpass";
     SSH_AUTH_SOCK_LOCAL = "/private/tmp/com.apple.launchd.2kMRnNrA1N/Listeners";
     SSH_AUTH_SOCK = "/private/tmp/com.apple.launchd.p1DRKW2MxY/Listeners";
+    VOLTA_HOME = "$HOME/.volta";
   };
 
   home.file = {
