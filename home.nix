@@ -126,6 +126,10 @@ in {
       source = mkOutOfStoreSymlink "/Users/jan.baer/Projects/dotfiles/bin/init-keychain.sh";
       force = true;
     };
+    ".claude/commands/commit.md" = {
+      source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.claude/commands/commit.md";
+      force = true;
+    };
   };
 
   programs.home-manager.enable = true;
