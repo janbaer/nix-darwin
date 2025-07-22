@@ -130,6 +130,22 @@ in {
       source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.claude/commands/commit.md";
       force = true;
     };
+    ".claude/commands/reload.md" = {
+      source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.claude/commands/reload.md";
+      force = true;
+    };
+    ".claude/settings.json" = {
+      source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.claude/settings.json";
+      force = true;
+    };
+    ".claude/MEMORY-MCP.md" = {
+      source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.claude/MEMORY-MCP.md";
+      force = true;
+    };
+    ".claude/RULES.md" = {
+      source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.claude/RULES.md";
+      force = true;
+    };
   };
 
   programs.home-manager.enable = true;
