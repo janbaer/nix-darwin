@@ -15,8 +15,6 @@ in {
   xdg.enable = true;
 
   home.packages = with pkgs; [
-    # devenv      # Fast, Declarative, Reproducible, and Composable Developer Environments
-
     lima          # Run Linux containers in Docker
 
     # Ansible related tools
@@ -37,6 +35,12 @@ in {
     # direnv = import ./programs/direnv.nix {inherit pkgs;};
   };
 
+  programs.direnv = {
+    enable = true;
+    enableZshIntegration = true;
+    nix-direnv.enable = true;
+    silent = true; # doesn't work
+  };
 
   home.sessionVariables = {
     SSH_SK_PROVIDER = "/usr/local/lib/libsk-libfido2.dylib";
