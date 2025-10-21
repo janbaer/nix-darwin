@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(darwin-rebuild:*)",
+      "Read(//nix/var/nix/profiles/**)",
+      "Bash(readlink:*)",
+      "Bash(nix-env:*)",
+      "Read(//nix/store/rw9f35s9dr42glxpr6j4kzxv9rl0bi7v-darwin-system-25.05.000eadb/**)",
+      "Bash(sudo nix-env:*)",
+      "Read(//run/**)",
+      "Bash(command -v:*)",
+      "Bash(/dev/null)",
+      "Bash(stat:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
