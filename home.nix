@@ -130,12 +130,8 @@ in {
       source = mkOutOfStoreSymlink "/Users/jan.baer/Projects/dotfiles/bin/init-keychain.sh";
       force = true;
     };
-    ".claude/commands/commit.md" = {
-      source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.claude/commands/commit.md";
-      force = true;
-    };
-    ".claude/commands/reload.md" = {
-      source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.claude/commands/reload.md";
+    ".claude/commands" = {
+      source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.claude/commands";
       force = true;
     };
     ".claude/settings.json" = {
