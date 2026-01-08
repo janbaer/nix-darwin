@@ -5,6 +5,7 @@
   ...
 }: {
   enable = false;
+  dotDir = config.home.homeDirectory + "/.config/zsh";
   history.size = 10000;
   history.path = "${config.xdg.dataHome}/zsh/history";
   shellAliases = {
