@@ -32,6 +32,7 @@ in {
     zsh = import ./programs/zsh.nix {inherit config pkgs lib; };
     zoxide = (import ./programs/zoxide.nix { inherit config pkgs; });
     fzf = import ./programs/fzf.nix {inherit pkgs;};
+    yazi = import ./programs/yazi.nix {inherit pkgs;};
     # direnv = import ./programs/direnv.nix {inherit pkgs;};
   };
 
@@ -48,6 +49,10 @@ in {
     SSH_AUTH_SOCK_LOCAL = "/private/tmp/com.apple.launchd.2kMRnNrA1N/Listeners";
     SSH_AUTH_SOCK = "/private/tmp/com.apple.launchd.p1DRKW2MxY/Listeners";
     VOLTA_HOME = "$HOME/.volta";
+  };
+
+  home.shellAliases = {
+    "y" = "yazi";
   };
 
   home.file = {
