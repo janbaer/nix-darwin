@@ -22,6 +22,9 @@ in {
 
     uv            # Extremely fast Python package installer and resolver, written in Rust
     volta         # Node Version Manager
+    gojq
+
+    aichat        # CLI for interacting with AI models, supporting multiple providers (e.g., OpenAI, Anthropic, Azure)
     # trivy — pinned to 0.69.3 with Go 1.25 (available in nixpkgs 25.11)
     # To get hashes: set both to pkgs.lib.fakeHash, run darwin-rebuild switch,
     # then copy the "got" values from the error output.
