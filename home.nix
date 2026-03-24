@@ -15,12 +15,8 @@ in {
   xdg.enable = true;
 
   home.packages = with pkgs; [
-    lima          # Run Linux containers in Docker
-
     # Ansible related tools
-    molecule      # Testing of Ansible roles
     ansible-lint  # Linter for Ansible
-    yamllint      # Linter for YAML files
 
     uv            # Extremely fast Python package installer and resolver, written in Rust
     volta         # Node Version Manager

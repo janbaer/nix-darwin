@@ -63,15 +63,11 @@ in
     # Password management
     _1password-cli  # 1Password command-line utility
     keepassxc   # Offline password manager with many features
-    # pam-reattach    # Reattach to the user's GUI session on macOS during authentication (for Touch ID support in tmux)
 
     raycast         # Control your tools with a few keystrokes
     obsidian        # Powerful knowledge base that works on top of a local folder of plain text Markdown files
 
     pipx            # Install and run Python applications in isolated environments
-
-    # # code-cursor     # AI-powered code editor built on vscode
-    tgpt        # AI from the command line
   ];
 
   fonts.packages = with pkgs; [
@@ -105,7 +101,6 @@ in
       "font-comic-shanns-mono-nerd-font"
       "chromium"
       "firefox"
-      "ghostty"
       # "keychain" # User-friendly front-end to ssh-agent
       "1password"
       # "1password_cli"
