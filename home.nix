@@ -18,6 +18,8 @@ in {
     # Ansible related tools
     ansible-lint  # Linter for Ansible
 
+    devbox        # Devbox CLI
+
     uv            # Extremely fast Python package installer and resolver, written in Rust
     volta         # Node Version Manager
     # trivy — pinned to 0.69.3 with Go 1.25 (available in nixpkgs 25.11)
