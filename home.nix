@@ -24,6 +24,16 @@ in {
 
     uv            # Extremely fast Python package installer and resolver, written in Rust
     volta         # Node Version Manager
+    # trivy — pinned to 0.69.3 with Go 1.25 (available in nixpkgs 25.11)
+    # To get hashes: set both to pkgs.lib.fakeHash, run darwin-rebuild switch,
+    # then copy the "got" values from the error output.
+    (import ./programs/trivy.nix {
+      inherit pkgs;
+      version    = "0.69.3";
+      sha256     = "sha256-lzFcLyrORA+1LxS4nzJVvilg29GTNiGRmnjJ47ev/yU=";
+      vendorHash = "sha256-aqSB2pakYH713GSbIAHwAL9Gio17MzZtwqfh9sbzDBs=";
+      goBuilder  = pkgs.buildGo125Module;
+    })
   ];
 
   programs = {

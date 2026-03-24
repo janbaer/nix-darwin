@@ -18,7 +18,6 @@ in
     # # Tools for the terminal
     tmux
     mkalias         # Quick'n'dirty tool to make APFS aliases
-    lf              # Terminal file manager written in Go and heavily inspired by ranger
     zoxide          # Fast cd command that learns your habits
     bat
     btop            # Monitor of resources
@@ -51,6 +50,7 @@ in
 
     # Instrastructure as code
     ansible
+    ansible-lint
     terraform
     coreutils-prefixed # GNU Core Utilities Prefixed  (Required for Ansible)
 
@@ -105,12 +105,12 @@ in
       "font-comic-shanns-mono-nerd-font"
       "chromium"
       "firefox"
+      "ghostty"
       # "keychain" # User-friendly front-end to ssh-agent
       "1password"
       # "1password_cli"
       "yubico-authenticator"
       "yubico-yubikey-manager"
-      "ghostty"
       "studio-3t"
       "orbstack"        # Running Docker containers
     ];
