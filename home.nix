@@ -25,6 +25,13 @@ in {
     gojq
 
     aichat        # CLI for interacting with AI models, supporting multiple providers (e.g., OpenAI, Anthropic, Azure)
+
+    (import ./programs/ghostty.nix {
+      inherit pkgs;
+      version = "1.3.1";
+      sha256  = "sha256-GM/ysKbO6Q7q2cfTBk6AiiUqQLryFKp1LB7LeTuPX2k=";
+    })
+
     # trivy — pinned to 0.69.3 with Go 1.25 (available in nixpkgs 25.11)
     # To get hashes: set both to pkgs.lib.fakeHash, run darwin-rebuild switch,
     # then copy the "got" values from the error output.
