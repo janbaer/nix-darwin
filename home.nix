@@ -63,10 +63,6 @@ in {
     VOLTA_HOME = "$HOME/.volta";
   };
 
-  home.shellAliases = {
-    "y" = "yazi";
-  };
-
   home.file = {
     ".tmux" = {
       source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.tmux";
@@ -94,15 +90,10 @@ in {
       force = true;
       recursive = true;
     };
-    ".zshenv" = {
-      source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.zshenv";
-      force = true;
-    };
-    ".config/lf" = {
-      source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.config/lf";
-      force = true;
-      recursive = true;
-    };
+    # ".zshenv" = {
+    #   source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.zshenv";
+    #   force = true;
+    # };
     ".config/lazygit" = {
       source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.config/lazygit";
       force = true;
@@ -149,10 +140,6 @@ in {
     };
     ".claude/commands" = {
       source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.claude/commands";
-      force = true;
-    };
-    ".claude/settings.json" = {
-      source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.claude/settings.json";
       force = true;
     };
     ".claude/MEMORY-MCP.md" = {

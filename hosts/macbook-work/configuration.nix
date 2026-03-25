@@ -101,9 +101,7 @@ in
       "font-comic-shanns-mono-nerd-font"
       "chromium"
       "firefox"
-      # "keychain" # User-friendly front-end to ssh-agent
       "1password"
-      # "1password_cli"
       "yubico-authenticator"
       "yubico-yubikey-manager"
       "studio-3t"
