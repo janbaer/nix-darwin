@@ -134,7 +134,7 @@ home.file."<path>" = {
 - **Username**: Hardcoded as "jan.baer" in multiple places (flake.nix, home.nix)
 - **Host ID**: Machine-specific "M9WMQ6QPM7" in flake.nix
 - **System**: aarch64-darwin (Apple Silicon)
-- **Nixpkgs Channel**: 25.05 release branch
+- **Nixpkgs Channel**: 25.11 release branch
 - **Dotfiles Location**: Expects `/Users/jan.baer/Projects/dotfiles/` to exist
 
 ## Direnv Integration
