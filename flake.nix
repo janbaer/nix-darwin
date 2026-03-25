@@ -34,7 +34,6 @@
         allowUnsupportedSystem = true;
         allowBroken = true;
       };
-      # overlays = [ nodeOverlay ];
     };
 
   in
