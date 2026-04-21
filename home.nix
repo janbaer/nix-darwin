@@ -32,14 +32,14 @@ in {
       sha256  = "sha256-GM/ysKbO6Q7q2cfTBk6AiiUqQLryFKp1LB7LeTuPX2k=";
     })
 
-    # trivy — pinned to 0.69.3 with Go 1.25 (available in nixpkgs 25.11)
+    # trivy — pinned to 0.70.0 with Go 1.25 (available in nixpkgs 25.11)
     # To get hashes: set both to pkgs.lib.fakeHash, run darwin-rebuild switch,
     # then copy the "got" values from the error output.
     (import ./programs/trivy.nix {
       inherit pkgs;
-      version    = "0.69.3";
-      sha256     = "sha256-lzFcLyrORA+1LxS4nzJVvilg29GTNiGRmnjJ47ev/yU=";
-      vendorHash = "sha256-aqSB2pakYH713GSbIAHwAL9Gio17MzZtwqfh9sbzDBs=";
+      version    = "0.70.0";
+      sha256     = "sha256-xMj5xA/q3ekMW8k1aHCKa5hsYZSFShghOO5K6MnDCBo=";
+      vendorHash = "sha256-VbkCDzSF8gHxXpzzNxtPVRqUn/4l0AVHNzlsOKmXNG8=";
       goBuilder  = pkgs.buildGo125Module;
     })
   ];
