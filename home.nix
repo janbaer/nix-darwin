@@ -6,6 +6,25 @@
 }: let
   inherit (config.lib.file) mkOutOfStoreSymlink;
   username = "jan.baer";
+  dotfiles = "/Users/${username}/Projects/dotfiles";
+
+  claudeSkills = [
+    "caveman"
+    "grill-me"
+    "shape"
+    "gitlab-mr-review"
+    "howcani"
+    "obsidian"
+    "forgejo-issue-create"
+  ];
+
+  mkSkillSymlink = name: {
+    name = ".claude/skills/${name}";
+    value = {
+      source = mkOutOfStoreSymlink "${dotfiles}/.claude/skills/${name}";
+      force = true;
+    };
+  };
 in {
   home.stateVersion = "24.11";
 
@@ -63,7 +82,7 @@ in {
     VOLTA_HOME = "$HOME/.volta";
   };
 
-  home.file = {
+  home.file = (lib.listToAttrs (map mkSkillSymlink claudeSkills)) // {
     ".tmux" = {
       source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.tmux";
       force = true;
@@ -134,20 +153,20 @@ in {
       source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.p10k.zsh";
       force = true;
     };
-    "bin/init-keychain.sh" = {
-      source = mkOutOfStoreSymlink "/Users/jan.baer/Projects/dotfiles/bin/init-keychain.sh";
-      force = true;
-    };
     ".claude/commands" = {
       source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.claude/commands";
       force = true;
     };
-    ".claude/MEMORY-MCP.md" = {
-      source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.claude/MEMORY-MCP.md";
+    ".claude/rules" = {
+      source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.claude/rules";
       force = true;
     };
-    ".claude/RULES.md" = {
-      source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.claude/RULES.md";
+    ".claude/CLAUDE.md" = {
+      source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.claude/CLAUDE.md";
+      force = true;
+    };
+    ".claude/ABOUTME.md" = {
+      source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.claude/ABOUTME.md";
       force = true;
     };
   };
