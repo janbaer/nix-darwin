@@ -9,13 +9,17 @@
   dotfiles = "/Users/${username}/Projects/dotfiles";
 
   claudeSkills = [
+    "brainstorm"
     "caveman"
-    "grill-me"
-    "shape"
+    "forgejo-issue-create"
     "gitlab-mr-review"
+    "grill-me"
+    "handoff"
     "howcani"
     "obsidian"
-    "forgejo-issue-create"
+    "security-advisory-triage"
+    "security-check"
+    "shape"
   ];
 
   mkSkillSymlink = name: {
