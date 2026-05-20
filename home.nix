@@ -20,6 +20,7 @@
     "security-advisory-triage"
     "security-check"
     "shape"
+    "ubuntu-cve-lookup"
   ];
 
   mkSkillSymlink = name: {
@@ -40,6 +41,8 @@ in {
   home.packages = with pkgs; [
     # Ansible related tools
     ansible-lint  # Linter for Ansible
+
+    ncdu
 
     devbox        # Devbox CLI
 
