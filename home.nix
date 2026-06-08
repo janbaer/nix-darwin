@@ -126,7 +126,7 @@ in {
       recursive = true;
     };
     ".config/nvim" = {
-      source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.config/nvim";
+      source = mkOutOfStoreSymlink "/Users/${username}/Projects/neovim/config";
       force = true;
       recursive = true;
     };
