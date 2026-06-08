@@ -58,7 +58,7 @@ in {
       sha256  = "sha256-GM/ysKbO6Q7q2cfTBk6AiiUqQLryFKp1LB7LeTuPX2k=";
     })
 
-    # trivy — pinned to 0.70.0 with Go 1.25 (available in nixpkgs 25.11)
+    # trivy — pinned to 0.70.0 with Go 1.25
     # To get hashes: set both to pkgs.lib.fakeHash, run darwin-rebuild switch,
     # then copy the "got" values from the error output.
     (import ./programs/trivy.nix {

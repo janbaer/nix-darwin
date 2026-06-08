@@ -1,7 +1,4 @@
 { self, pkgs, config, system, username, ...}:
-let
-  
-in
 {
   # Necessary for using flakes on this system.
   nix.settings.experimental-features = "nix-command flakes";
@@ -67,7 +64,7 @@ in
     raycast         # Control your tools with a few keystrokes
     obsidian        # Powerful knowledge base that works on top of a local folder of plain text Markdown files
 
-    pipx            # Install and run Python applications in isolated environments
+    (pkgs.pipx.overrideAttrs (_: { doInstallCheck = false; }))  # 1.8.0 tests fail in 26.05
   ];
 
   fonts.packages = with pkgs; [

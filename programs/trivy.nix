@@ -4,9 +4,8 @@
 # pass version + sha256 + vendorHash (all three are required together).
 #
 # If the target version requires a newer Go than nixpkgs provides, pass
-# `goBuilder` (e.g. pkgs.buildGo125Module). The nixpkgs 25.11 trivy package
-# uses `buildGo124Module` as its argument, so we replace that.
-# In nixpkgs 25.11: buildGoModule = buildGo125Module (the default).
+# `goBuilder` (e.g. pkgs.buildGo125Module). The nixpkgs 26.05 trivy package
+# uses `buildGoModule` as its argument, so we replace that.
 #
 # Hashes can be obtained by temporarily setting them to pkgs.lib.fakeHash,
 # running `darwin-rebuild switch`, then copying the expected values from
@@ -29,9 +28,9 @@
 
 let
   hasOverride = version != null && sha256 != null && vendorHash != null;
-  # nixpkgs 25.11 trivy uses buildGo124Module; replace it to use a newer Go
+  # nixpkgs 26.05 trivy uses buildGoModule; replace it to use a specific Go version
   base = if goBuilder != null
-    then pkgs.trivy.override { buildGo124Module = goBuilder; }
+    then pkgs.trivy.override { buildGoModule = goBuilder; }
     else pkgs.trivy;
 in
   if hasOverride
