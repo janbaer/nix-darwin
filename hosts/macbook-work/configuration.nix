@@ -35,6 +35,7 @@
     # My editor for everythin
     python312
     neovim
+    tree-sitter     # Syntax highlighting for Neovim
     luarocks        # A package manager for Lua modules.
 
     # Development environment
