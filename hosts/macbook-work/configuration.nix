@@ -102,7 +102,7 @@ in
       "chromium"
       "firefox"
       "1password"
-      "yubico-authenticator"
+      # "yubico-authenticator"
       "yubico-yubikey-manager"
       "studio-3t"
       "orbstack"        # Running Docker containers
@@ -115,7 +115,7 @@ in
     # Define apps from the MacOS app-store here - Login is required
     # Search for the app id with `mas search Wireguard`
     masApps = {
-      "Wireguard" = 1451685025;
+      # "Wireguard" = 1451685025;
     };
   };
 
