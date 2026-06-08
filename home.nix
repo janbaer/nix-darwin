@@ -63,10 +63,10 @@ in {
     # then copy the "got" values from the error output.
     (import ./programs/trivy.nix {
       inherit pkgs;
-      version    = "0.70.0";
-      sha256     = "sha256-xMj5xA/q3ekMW8k1aHCKa5hsYZSFShghOO5K6MnDCBo=";
-      vendorHash = "sha256-VbkCDzSF8gHxXpzzNxtPVRqUn/4l0AVHNzlsOKmXNG8=";
-      goBuilder  = pkgs.buildGo125Module;
+      version    = "0.71.0";
+      sha256     = "sha256-wlvG8iGPBbHV66SOT0zek2VN1QawksVQwM9LSEItzh4=";
+      vendorHash = "sha256-n5eWyKpG47LuXPzMO+/tzhFs4F+grWQAThCoGEMQ2S8=";
+      goBuilder  = pkgs.buildGo126Module;
     })
   ];
 
