@@ -58,12 +58,12 @@ in {
       sha256  = "sha256-GM/ysKbO6Q7q2cfTBk6AiiUqQLryFKp1LB7LeTuPX2k=";
     })
 
-    # trivy — pinned to 0.70.0 with Go 1.25
+    # trivy — pinned to 0.71.0 with Go 1.25
     # To get hashes: set both to pkgs.lib.fakeHash, run darwin-rebuild switch,
     # then copy the "got" values from the error output.
     (import ./programs/trivy.nix {
       inherit pkgs;
-      version    = "0.71.0";
+      version    = "0.71.1";
       sha256     = "sha256-wlvG8iGPBbHV66SOT0zek2VN1QawksVQwM9LSEItzh4=";
       vendorHash = "sha256-n5eWyKpG47LuXPzMO+/tzhFs4F+grWQAThCoGEMQ2S8=";
       goBuilder  = pkgs.buildGo126Module;
@@ -128,7 +128,6 @@ in {
     ".config/nvim" = {
       source = mkOutOfStoreSymlink "/Users/${username}/Projects/neovim/config";
       force = true;
-      recursive = true;
     };
     ".config/Code" = {
       source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.config/Code";
@@ -162,6 +161,10 @@ in {
     };
     ".claude/commands" = {
       source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.claude/commands";
+      force = true;
+    };
+    ".claude/hooks" = {
+      source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.claude/hooks";
       force = true;
     };
     ".claude/rules" = {
