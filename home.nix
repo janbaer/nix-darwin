@@ -120,8 +120,8 @@ in {
     #   source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.zshenv";
     #   force = true;
     # };
-    ".config/lazygit" = {
-      source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.config/lazygit";
+    "Library/Application Support/lazygit/config.yml" = {
+      source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.config/lazygit/config.yml";
       force = true;
     };
     ".config/nvim" = {
