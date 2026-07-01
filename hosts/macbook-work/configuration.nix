@@ -93,7 +93,6 @@
       "theseal/ssh-askpass/ssh-askpass"
       "michaelroosz/ssh/libsk-libfido2"   # Fixes a problem with Yubikeys
       "michaelroosz/ssh/sshpass"          # Contains an important fix for keeping connections open also when using ssh-jumphost 
-      # "node@20"
     ];
     casks = [
       "font-comic-shanns-mono-nerd-font"

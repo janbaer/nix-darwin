@@ -123,7 +123,6 @@ in {
     ".config/lazygit" = {
       source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.config/lazygit";
       force = true;
-      recursive = true;
     };
     ".config/nvim" = {
       source = mkOutOfStoreSymlink "/Users/${username}/Projects/neovim/config";
@@ -132,7 +131,6 @@ in {
     ".config/Code" = {
       source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.config/Code";
       force = true;
-      recursive = true;
     };
     ".config/powerline" = {
       source = mkOutOfStoreSymlink "/Users/${username}/Projects/dotfiles/.config/powerline";
