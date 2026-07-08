@@ -19,6 +19,7 @@
       { on = [ "g" "M" ]; run = "cd ~/Music"; desc = "Go to Music"; }
       { on = [ "g" "c" ]; run = "cd ~/.config"; desc = "Go to .config"; }
       { on = [ "g" "b" ]; run = "cd ~/bin"; desc = "Go to bin"; }
+      { on = [ "S" ]; run = "shell \"$SHELL\" --block"; desc = "Open $SHELL here"; }
     ];
   };
 }
